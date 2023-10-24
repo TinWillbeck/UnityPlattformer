@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -62,4 +63,20 @@ public class PlayerController : MonoBehaviour
             Gizmos.DrawWireSphere(feet.position, groundRadius);
         }
     }
+    private void OnCollisionEnter2D(Collision2D other) {
+            if(other.gameObject.tag == "Enemy")
+            {
+                Debug.Log("krock");
+                SceneManager.LoadScene(1);
+            }
+    }
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.gameObject.tag == "Void")
+        {
+            Debug.Log("oops");
+            SceneManager.LoadScene(1);
+        }    
+    }    
+
 }
