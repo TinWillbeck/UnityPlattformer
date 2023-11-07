@@ -32,17 +32,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // rörelseinput
         float moveX = Input.GetAxisRaw("Horizontal");
 
-
+        // rörelsekod
         Vector2 movementX = new(moveX, 0);
-
         transform.Translate(movementX * speed * Time.deltaTime);
 
+        // kolla om karaktär nuddar marken
         bool isGrounded = Physics2D.OverlapCircle(feet.position, groundRadius, groundLayer);
 
 
-
+        // karaktären hoppar om man har tryckt på mellanslag och nuddar marken
         if (Input.GetAxisRaw("Jump") > 0 && hasReleasedJumpButton == true && isGrounded)
         {
 
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
             hasReleasedJumpButton = false;
         }
 
+        // gör så man kan hoppa igen
         if (Input.GetAxisRaw("Jump") == 0)
         {
             hasReleasedJumpButton = true;
@@ -58,12 +60,15 @@ public class PlayerController : MonoBehaviour
     }
     private void OnDrawGizmos() 
     {
+        // ritar ut en cirkel där fötterna är
         if (feet)
         {
             Gizmos.DrawWireSphere(feet.position, groundRadius);
         }
     }
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+            // gör så att man dör om man nuddar en fiende
             if(other.gameObject.tag == "Enemy")
             {
                 Debug.Log("krock");
@@ -72,6 +77,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) 
     {
+        // gör så att man dör om man ramlar av en plattform
         if(other.gameObject.tag == "Void")
         {
             Debug.Log("oops");
