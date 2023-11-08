@@ -8,11 +8,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     float speed;
     // Update is called once per frame
+    public int multiplier = 1;
+
     void Update()
     {
         // rörelsekod
         Vector2 movementX = new(speed,0);
-        transform.Translate(movementX * Time.deltaTime);
+        transform.Translate(movementX * multiplier * Time.deltaTime);
         
     }
     private void OnTriggerEnter2D(Collider2D other) 
