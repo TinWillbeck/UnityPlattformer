@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField]
     float speed;
-    // Update is called once per frame
+    
     public int multiplier = 1;
 
     void Update()
