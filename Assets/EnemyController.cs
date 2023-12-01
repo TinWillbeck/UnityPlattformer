@@ -12,8 +12,9 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        // rörelsekod
+        // rörelsekod, en vektor som får input i X axeln och är noll i Y axeln
         Vector2 movementX = new(speed,0);
+        // här uppdateras fiendens position med vektorn * en multiplier som inte används just nu * en kontroll som gör att rörelsen inte blir beroende av fps.
         transform.Translate(movementX * multiplier * Time.deltaTime);
         
     }
